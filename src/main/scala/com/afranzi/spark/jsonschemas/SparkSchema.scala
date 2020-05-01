@@ -12,7 +12,6 @@ object SparkSchema extends Logging {
     def fields: Seq[StructField] = {
       s.getPropertySchemas
         .toSeq
-        .sortBy(_._1)
         .flatMap {
           case (key, value) =>
             extractDataType(key, value)
@@ -31,8 +30,8 @@ object SparkSchema extends Logging {
           case StructType(fields) if fields.length == 0 => false
           case _ => true
         })
-        .sortBy(_.name)
         .mergeFields
+        .sortBy(_.name)
     }
   }
 
@@ -40,7 +39,6 @@ object SparkSchema extends Logging {
     def mergeFields: Seq[StructField] = {
       fields
         .groupBy(_.name)
-        .mapValues(_.sortBy(_.name))
         .mapValues {
           case head +: Nil => head
           case head +: tail => tail.foldLeft(head) { (a, l) =>
@@ -49,6 +47,7 @@ object SparkSchema extends Logging {
         }
         .values
         .toSeq
+        .sortBy(_.name)
     }
   }
 
@@ -80,7 +79,7 @@ object SparkSchema extends Logging {
 
   private[jsonschemas] def inspectSchema(schema: Schema): Seq[StructField] = {
     schema match {
-      case s: CombinedSchema  => s.getSubschemas.toSeq.flatMap(inspectSchema).sortBy(_.name).mergeFields
+      case s: CombinedSchema  => s.getSubschemas.toSeq.flatMap(inspectSchema).mergeFields
       case s: ObjectSchema    => s.fields
       case s: ReferenceSchema => inspectSchema(s.getReferredSchema)
       case s: Schema =>
