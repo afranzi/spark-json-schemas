@@ -1,2 +1,2 @@
-# spark-json-schemas
+# Spark JSON-Schemas
 Create Spark schemas using JSON-schemas

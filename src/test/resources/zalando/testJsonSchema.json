@@ -1,0 +1,178 @@
+{
+  "$schema": "http://json-schema.org/draft-07/schema#",
+  "additionalProperties": true,
+  "description": "schema.json for testing schema converter",
+  "id": "testSchema",
+  "name": "/",
+  "properties": {
+    "additionalProperty": {
+      "description": "to do",
+      "id": "testSchema/additionalProperty",
+      "name": "additionalProperty",
+      "title": "Test additional property schema",
+      "type": "string"
+    },
+    "array": {
+      "description": "to do",
+      "id": "testSchema/array",
+      "items": {
+        "additionalProperties": true,
+        "description": "to do",
+        "id": "testSchema/array/0",
+        "name": "0",
+        "properties": {
+          "itemProperty1": {
+            "description": "to do",
+            "id": "testSchema/array/0/itemProperty1",
+            "name": "itemProperty1",
+            "title": "Test item property 1 schema.",
+            "type": "string"
+          },
+          "itemProperty2": {
+            "description": "to do",
+            "id": "testSchema/array/0/itemProperty2",
+            "name": "itemProperty2",
+            "title": "Test item property 2 schema.",
+            "type": "number"
+          }
+        },
+        "title": "Test 0 schema.",
+        "type": "object"
+      },
+      "name": "array",
+      "title": "Test array schema.",
+      "type": "array"
+    },
+    "boolean": {
+      "description": "to do",
+      "id": "testSchema/boolean",
+      "name": "boolean",
+      "title": "Test boolean schema.",
+      "type": "boolean"
+    },
+    "float": {
+      "description": "to do",
+      "id": "testSchema/float",
+      "name": "float",
+      "title": "Test float schema.",
+      "type": "float"
+    },
+    "integer": {
+      "description": "to do",
+      "id": "testSchema/integer",
+      "name": "integer",
+      "title": "Test integer schema.",
+      "type": "integer"
+    },
+    "nullable": {
+      "description": "to do",
+      "id": "testSchema/nullable",
+      "name": "nullable",
+      "title": "Test nullable schema.",
+      "type": [
+        "number",
+        "null"
+      ]
+    },
+    "number": {
+      "description": "to do",
+      "id": "testSchema/number",
+      "name": "number",
+      "title": "Test number schema.",
+      "type": "number"
+    },
+    "object": {
+      "additionalProperties": false,
+      "description": "to do",
+      "id": "testSchema/object",
+      "name": "object",
+      "properties": {
+        "item1": {
+          "description": "to do",
+          "id": "testSchema/object/item1",
+          "name": "item1",
+          "title": "Test item 1 schema.",
+          "type": "string"
+        },
+        "item2": {
+          "description": "to do",
+          "id": "testSchema/object/item2",
+          "name": "item2",
+          "title": "Test item 2 schema.",
+          "type": "string"
+        }
+      },
+      "required": [
+        "item1",
+        "item2"
+      ],
+      "title": "Test object schema.",
+      "type": "object"
+    },
+    "string": {
+      "description": "to do",
+      "id": "testSchema/string",
+      "name": "string",
+      "title": "Test string schema.",
+      "type": "string"
+    },
+    "structure": {
+      "additionalProperties": false,
+      "description": "to do",
+      "id": "testSchema/structure",
+      "name": "structure",
+      "properties": {
+        "nestedArray": {
+          "description": "to do",
+          "id": "testSchema/structure/nestedArray",
+          "items": {
+            "additionalProperties": false,
+            "description": "to do",
+            "id": "testSchema/structure/nestedArray/0",
+            "name": "0",
+            "properties": {
+              "key": {
+                "description": "to do",
+                "enum": [
+                  "KEY1",
+                  "KEY2"
+                ],
+                "id": "testSchema/structure/nestedArray/0/key",
+                "name": "key",
+                "title": "Test nested array key schema.",
+                "type": "string"
+              },
+              "value": {
+                "description": "to do",
+                "id": "testSchema/structure/nestedArray/0/value",
+                "name": "value",
+                "title": "Test nested array value schema.",
+                "type": "integer"
+              }
+            },
+            "title": "Test 0 schema.",
+            "type": "object"
+          },
+          "name": "nestedArray",
+          "title": "Test nested array schema.",
+          "type": "array"
+        }
+      },
+      "title": "Test structure schema.",
+      "type": "object"
+    }
+  },
+  "required": [
+    "object",
+    "array",
+    "structure",
+    "typeless",
+    "integer",
+    "string",
+    "number",
+    "nullable",
+    "boolean"
+  ],
+  "title": "Root schema.",
+  "type": "object"
+}

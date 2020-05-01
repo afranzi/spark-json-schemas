@@ -1,0 +1,57 @@
+{
+  "$schema": "http://json-schema.org/draft-07/schema#",
+  "$id": "/schemas/events/base-event/1.json",
+  "additionalProperties": true,
+  "description": "Base schema for all user-generated events (on device)",
+  "properties": {
+    "user": {
+      "description": "User information",
+      "oneOf": [
+        {
+          "type": "null"
+        },
+        {
+          "$ref": "/schemas/objects/User/1.json"
+        }
+      ]
+    },
+    "product": {
+      "description": "Product information",
+      "$ref": "/schemas/objects/Product/1.json"
+    },
+    "deploymentEnv": {
+      "description": "Deployment environment in use",
+      "type": "string",
+      "enum": [
+        "dev",
+        "prod"
+      ]
+    },
+    "createdAt": {
+      "description": "Timestamp when the event was generate (following rfc 3339 format)",
+      "type": "string",
+      "format": "date-time"
+    },
+    "schema": {
+      "description": "Name of the schema to validate against",
+      "type": "string"
+    },
+    "source": {
+      "description": "Source of the data point",
+      "type": "string",
+      "enum": [
+        "tracking",
+        "sensor",
+        "error"
+      ]
+    }
+  },
+  "required": [
+    "source",
+    "schema",
+    "product",
+    "deploymentEnv",
+    "createdAt"
+  ],
+  "type": "object"
+}
