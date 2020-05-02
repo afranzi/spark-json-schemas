@@ -1,0 +1,21 @@
+{
+  "$schema": "http://json-schema.org/draft-07/schema#",
+  "$id": "/schemas/objects/Device/1.json",
+  "additionalProperties": true,
+  "description": "Device data",
+  "properties": {
+    "id": {
+      "description": "ID uniquely identifying the device the event was sent from",
+      "type": "string"
+    },
+    "platform": {
+      "description": "Platform the device is running on",
+      "enum": ["Android", "iOS", "Bot"]
+    },
+    "model": {
+      "description": "Device model, e.g. Moto G",
+      "type": "string"
+    }
+  },
+  "required": ["id", "platform"]
+}

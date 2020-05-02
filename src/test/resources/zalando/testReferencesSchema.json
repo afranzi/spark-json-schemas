@@ -1,0 +1,30 @@
+{
+  "$schema": "http://json-schema.org/draft-07/schema#",
+  "definitions": {
+    "address": {
+      "properties": {
+        "zip": {
+          "type": [
+            "string",
+            "null"
+          ]
+        }
+      },
+      "type": "object"
+    }
+  },
+  "properties": {
+    "addressA": {
+      "$ref": "#/definitions/address",
+      "type": "object"
+    },
+    "addressB": {
+      "$ref": "#/definitions/address",
+      "type": "object"
+    },
+    "name": {
+      "type": "string"
+    }
+  },
+  "type": "object"
+}

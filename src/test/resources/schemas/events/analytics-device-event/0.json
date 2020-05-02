@@ -1,0 +1,58 @@
+{
+  "$schema": "http://json-schema.org/draft-07/schema#",
+  "$id": "/schemas/events/analytics-device-event/0.json",
+  "additionalProperties": true,
+  "description": "Event for on-device analytics event sent by e.g. the application.",
+  "allOf": [
+    {
+      "$ref": "/schemas/events/base-device-event/1.json"
+    }
+  ],
+  "properties": {
+    "type": {
+      "const": "track"
+    },
+    "view": {
+      "description": "Identifier of the view that the action was performed on",
+      "type": ["null", "string"]
+    },
+    "element": {
+      "description": "Identifier of the user interface element that the action was performed on",
+      "type": ["null", "string"]
+    },
+    "unique_name": {
+      "description": "Unique identifier that is a concatenation of the event name, the view and the element",
+      "type": ["string"]
+    },
+    "event": {
+      "description": "Identifier of the action performed",
+      "type": ["null", "string"]
+    },
+    "timestamp": {
+      "description": "Timezone-agnostic timestamp value",
+      "type": "number",
+      "minimum": 1111111111111
+    },
+    "schema": {
+      "description": "Name of the schema to validate against",
+      "type": "string"
+    },
+    "userId": {
+      "description": "Id of the user which this event belongs to",
+      "type": ["string", "null"]
+    },
+    "anonymousId": {
+      "description": "Identifier of the anonymous user this event belongs to",
+      "type": "string"
+    }
+  },
+  "anyOf": [
+    {
+      "required": ["anonymousId"]
+    },
+    {
+      "required": ["userId"]
+    }
+  ],
+  "required": ["event", "view", "element", "unique_name"]
+}

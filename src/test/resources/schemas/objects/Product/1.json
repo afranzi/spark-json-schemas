@@ -1,0 +1,24 @@
+{
+  "$schema": "http://json-schema.org/draft-07/schema#",
+  "$id": "/schemas/objects/Product/1.json",
+  "additionalProperties": true,
+  "description": "User data",
+  "properties": {
+    "id": {
+      "description": "Unique product ID",
+      "type": "string"
+    },
+    "name": {
+      "description": "Name of the product (e.g., Minä Mix, Reflections",
+      "type": "string"
+    },
+    "version": {
+      "description": "Version of the product",
+      "type": "string"
+    }
+  },
+  "required": [
+    "id",
+    "version"
+  ]
+}

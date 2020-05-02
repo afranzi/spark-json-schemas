@@ -1,0 +1,21 @@
+sudo: false
+dist: trusty
+language: scala
+scala:
+  - 2.11.8
+
+jdk:
+  - oraclejdk8
+
+cache:
+  directories:
+    - "$HOME/.ivy2/cache"
+    - "$HOME/.sbt/launchers"
+    - "$HOME/.m2"
+    - "$HOME/.npm"
+
+before_cache:
+  - find $HOME/.ivy2/cache -name "ivydata-*.properties" -print -delete
+  - find $HOME/.sbt        -name "*.lock"               -print -delete
+
+script: sbt check
