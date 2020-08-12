@@ -2,7 +2,7 @@ package com.afranzi.spark.jsonschemas
 
 import java.io.{BufferedReader, File, Reader}
 
-import com.afranzi.spark.jsonschemas.resources.RightSource.fromSource
+import com.afranzi.spark.jsonschemas.resources.RightSource.fromResources
 import org.json.{JSONObject, JSONTokener}
 
 import scala.io.{BufferedSource, Source}
@@ -24,7 +24,7 @@ object JsonReader {
   def read(content: BufferedSource): JSONObject = read(content.reader())
 
   def read(jsonPath: String): JSONObject = {
-    val resource = Source.fromResource(jsonPath)
+    val resource = Source.fromResources(jsonPath)
     read(resource)
   }
 
