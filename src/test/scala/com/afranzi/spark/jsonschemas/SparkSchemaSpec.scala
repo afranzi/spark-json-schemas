@@ -2,11 +2,10 @@ package com.afranzi.spark.jsonschemas
 
 import com.afranzi.spark.jsonschemas.SparkSchema.SparkSchemaExtractor
 import com.afranzi.spark.jsonschemas.clients.ResourceSchemaClient
-import grizzled.slf4j.Logging
 import org.apache.spark.sql.types.{StructField, _}
 import org.everit.json.schema._
 
-class SparkSchemaSpec extends UnitSpec with Logging {
+class SparkSchemaSpec extends UnitSpec {
 
   val schemaBuilder: SchemaBuilder = SchemaBuilder(Some(new ResourceSchemaClient))
 

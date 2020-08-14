@@ -17,13 +17,9 @@ libraryDependencies ++= Seq(
   "com.github.everit-org.json-schema" % "org.everit.json.schema" % "1.12.1", // https://github.com/everit-org/json-schema
 
   // - SPARK
-  "org.apache.spark" %% "spark-core" % SparkVersion,             // https://spark.apache.org/
-  "org.apache.spark" %% "spark-sql" % SparkVersion,              // https://spark.apache.org/sql/
-
-//  // - LOGGERS
-  "org.clapper" %% "grizzled-slf4j" % "1.3.4" exclude("org.slf4j", "slf4j-api"), // http://software.clapper.org/grizzled-slf4j/
-  "ch.qos.logback" % "logback-classic" % "1.2.3",                                // https://logback.qos.ch/
+  "org.apache.spark" %% "spark-core" % SparkVersion % Provided,             // https://spark.apache.org/
+  "org.apache.spark" %% "spark-sql" % SparkVersion % Provided,              // https://spark.apache.org/sql/
 
   // - TESTS
-  "org.scalatest" %% "scalatest" % "3.2.0" % Test  // http://scalatest.org/
+  "org.scalatest" %% "scalatest" % "3.1.2" % Test  // http://scalatest.org/
 )
