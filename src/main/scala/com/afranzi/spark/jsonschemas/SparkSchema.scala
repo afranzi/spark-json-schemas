@@ -1,6 +1,6 @@
 package com.afranzi.spark.jsonschemas
 
-import grizzled.slf4j.Logging
+import org.apache.spark.internal.Logging
 import org.apache.spark.sql.types._
 import org.everit.json.schema._
 
@@ -52,7 +52,7 @@ object SparkSchema extends Logging {
   }
 
   private[jsonschemas] def extractDataType[T >: DataType](key: String, schema: Schema): Option[StructField] = {
-    logger.debug(s"Primitive ${schema.getClass}")
+    log.debug(s"Primitive ${schema.getClass}")
     val dataType: Option[DataType] = schema match {
       case _: ConstSchema => None
       case _: EnumSchema  => None
@@ -71,7 +71,7 @@ object SparkSchema extends Logging {
         }
       case s: ObjectSchema => Some(StructType(s.fields))
       case _ =>
-        logger.error(s"None detected $schema")
+        log.error(s"None detected $schema")
         None
     }
     dataType.map(dt => StructField(name = key, dataType = dt, nullable = true))
@@ -83,7 +83,7 @@ object SparkSchema extends Logging {
       case s: ObjectSchema    => s.fields
       case s: ReferenceSchema => inspectSchema(s.getReferredSchema)
       case s: Schema =>
-        logger.error(s"Schema ${s.getClass} - $s")
+        log.error(s"Schema ${s.getClass} - $s")
         Seq.empty
     }
   }

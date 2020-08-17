@@ -2,7 +2,7 @@ package com.afranzi.spark.jsonschemas
 
 import java.io.File
 
-import com.afranzi.spark.jsonschemas.resources.RightSource.fromSource
+import com.afranzi.spark.jsonschemas.resources.RightSource.fromResources
 import org.json.JSONObject
 import org.scalatest.Assertion
 
@@ -17,8 +17,8 @@ class JsonReaderSpec extends UnitSpec {
   "Reading a JSON from File, Reader & content" should "build the same JSON" in {
     val resourcePath = "/schemas/events/base-event/1.json"
 
-    val jsonReader = Source.fromResource(resourcePath).reader()
-    val jsonContent = Source.fromResource(resourcePath).getLines().mkString("\n")
+    val jsonReader = Source.fromResources(resourcePath).reader()
+    val jsonContent = Source.fromResources(resourcePath).getLines().mkString("\n")
 
     val jsonFile = new File(getClass.getResource(resourcePath).getPath)
 
