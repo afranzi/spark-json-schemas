@@ -78,7 +78,7 @@ object SchemaMerger {
 
       case (leftType, rightType) if leftType == rightType =>
         leftType
-      case (leftType: StringType, _) => leftType
+      case (leftType: StringType, _)  => leftType
       case (_, rightType: StringType) => rightType
       case _ =>
         throw new SparkException(s"Failed to merge incompatible data types ${left.catalogString}" +
