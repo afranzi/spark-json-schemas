@@ -16,7 +16,7 @@ class SparkSchemaSpec extends UnitSpec {
     val sparkSchema = getSparkSchema(schemaPath)
 
     val expected = StructType(Seq(
-      StructField("createdAt", StringType, nullable = true),
+      StructField("createdAt", TimestampType, nullable = true),
       StructField("deploymentEnv", StringType, nullable = true),
       StructField("product", StructType(Seq(
         StructField("id", StringType, nullable = true),
@@ -39,7 +39,7 @@ class SparkSchemaSpec extends UnitSpec {
 
     val expected = StructType(Seq(
       StructField("anonymousId", StringType, nullable = true),
-      StructField("createdAt", StringType, nullable = true),
+      StructField("createdAt", TimestampType, nullable = true),
       StructField("deploymentEnv", StringType, nullable = true),
       StructField("device", StructType(Seq(
         StructField("id", StringType, nullable = true),
