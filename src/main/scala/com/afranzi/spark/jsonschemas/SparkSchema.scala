@@ -3,6 +3,7 @@ package com.afranzi.spark.jsonschemas
 import org.apache.spark.internal.Logging
 import org.apache.spark.sql.types._
 import org.everit.json.schema._
+import org.everit.json.schema.internal.DateTimeFormatValidator
 
 import scala.collection.JavaConversions._
 
@@ -55,19 +56,20 @@ object SparkSchema extends Logging {
     log.debug(s"Primitive ${schema.getClass}")
     val dataType: Option[DataType] = schema match {
       case _: ConstSchema => None
-      case _: EnumSchema  => None
-      case _: NullSchema  => None
+      case _: EnumSchema => None
+      case _: NullSchema => None
       case s: NumberSchema =>
         if (s.requiresInteger) Some(IntegerType)
         else Some(FloatType)
-      case s: StringSchema    => Some(StringType)
-      case s: BooleanSchema   => Some(BooleanType)
+      case s: StringSchema if s.getFormatValidator.isInstanceOf[DateTimeFormatValidator] => Some(TimestampType)
+      case s: StringSchema => Some(StringType)
+      case s: BooleanSchema => Some(BooleanType)
       case s: ReferenceSchema => extractDataType(key, s.getReferredSchema).map(_.dataType)
       case s: CombinedSchema =>
         s.fields(key) match {
-          case Nil         => None
+          case Nil => None
           case head +: Nil => Some(head.dataType)
-          case list        => Some(StructType(list))
+          case list => Some(StructType(list))
         }
       case s: ObjectSchema => Some(StructType(s.fields))
       case _ =>
@@ -79,8 +81,8 @@ object SparkSchema extends Logging {
 
   private[jsonschemas] def inspectSchema(schema: Schema): Seq[StructField] = {
     schema match {
-      case s: CombinedSchema  => s.getSubschemas.toSeq.flatMap(inspectSchema).mergeFields
-      case s: ObjectSchema    => s.fields
+      case s: CombinedSchema => s.getSubschemas.toSeq.flatMap(inspectSchema).mergeFields
+      case s: ObjectSchema => s.fields
       case s: ReferenceSchema => inspectSchema(s.getReferredSchema)
       case s: Schema =>
         log.error(s"Schema ${s.getClass} - $s")
