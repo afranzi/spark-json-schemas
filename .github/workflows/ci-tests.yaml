@@ -13,4 +13,4 @@ jobs:
       - name: Setup Scala
         uses: olafurpg/setup-scala@v12
       - name: Build and Tests
-        run: sbt -v -Dfile.encoding=UTF-8 clean coverage test coverageReport --timings
+        run: sbt -v check
